@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Logout = () => {        
-    return(<div></div>);
+    return(<div>I ADDED THIS TEXT FOR TESTING, delete it when the time comes*</div>);
 }
 
 export default Logout;

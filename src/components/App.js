@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import PrivateRoute from './PrivateRoute';
 import styled from 'styled-components';
 
@@ -9,15 +9,38 @@ import View from './View';
 import Login from './Login';
 import Logout from './Logout';
 
+
+// ### Basic Routing
+// > *Build the needed utilities to restrict access to private routes.*
+// * [x] Build a `Route` component that renders rendering `Login.js` to the path `/`.
+// * [x] Build a `Route` component that renders rendering `Login.js` to the path `/login`.
+// * [x] Build a `Route` component that renders rendering `View.js` to the path `/view`.
+// * [x] Build a `Route` component that renders rendering `Logout.js` to the path `/logout`.
+// ______________ These 4 X's are: ____________________________
+// <Switch>
+// <Route exact path="/" component={Login} />
+// <Route path="/login" component={Login} />
+// <Route path="/view" component={View} />
+// <Route path="/logout" component={Logout} />
+// </Switch>
+
+
 const App = () => {
   return (
     <AppContainer>
-      <LambdaHeader/>
-      <Header/>
+      <LambdaHeader />
+
+      <Header />
+
       <RouteContainer>
-        <Route exact path="/">
-          <Login/>
-        </Route>          
+
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/view" component={View} />
+          <PrivateRoute path="/logout" component={Logout} />
+        </Switch>
+
       </RouteContainer>
     </AppContainer>
   )
@@ -25,11 +48,12 @@ const App = () => {
 
 export default App;
 
+
 //Task List
-//1. Create and import PrivateRoute component.
-//2. Create a Route for Login pointing to '/login.'
-//3. Create a PrivateRoute for View component point to '/view.'
-//4. Create a PrivateRoute for Logout component pointing to '/logout.'
+// [x] 1. Create and import PrivateRoute component.
+// [x] 2. Create a Route for Login pointing to '/login.'
+// [x] 3. Create a PrivateRoute for View component point to '/view.'
+// [x] 4. Create a PrivateRoute for Logout component pointing to '/logout.'
 
 
 const AppContainer = styled.div`

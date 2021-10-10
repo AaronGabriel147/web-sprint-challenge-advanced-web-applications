@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+
 const Header = () => {
     return(
         <HeaderStyle>
@@ -16,6 +17,12 @@ const Header = () => {
 }
 
 export default Header;
+
+
+
+
+
+
 
 const HeaderStyle = styled.div`
     padding: 1em;

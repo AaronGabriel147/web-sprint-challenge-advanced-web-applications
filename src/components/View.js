@@ -1,47 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import articleService from '../services/articleServices';
 import Article from './Article';
 import EditForm from './EditForm';
+import { axiosWithAuth } from './axiosWithAuth';
+
+
+
+// * [ ] Complete `handleDelete` so that a http request is made that deletes the article with the included id. 
+// * [ ] After successfully deleting the article on the api, update local state to reflect these changes.
+
 
 const View = (props) => {
     const [articles, setArticles] = useState([]);
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 
+
+
+    useEffect(() => {
+        articleService().then((res) => {
+            // console.log('useEffect res inside View.js', res)
+            setArticles(res)
+        })
+    }, []);
+
+
+    // console.log('###########', articles) //  State is set to services fetcher.
+
+
+
     const handleDelete = (id) => {
+        axiosWithAuth()
+            .delete(`articles/${id.id}`)
+            .then((res) => {
+                // console.log('@@@@@@@res in handleDelete', res)
+                // setArticles(articles.filter(article => article.id !== id.id))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     const handleEdit = (article) => {
     }
 
-    const handleEditSelect = (id)=> {
+    const handleEditSelect = (id) => {
         setEditing(true);
         setEditId(id);
     }
 
-    const handleEditCancel = ()=>{
+    const handleEditCancel = () => {
         setEditing(false);
     }
 
-    return(<ComponentContainer>
-        <HeaderContainer>View Articles</HeaderContainer>
-        <ContentContainer flexDirection="row">
-            <ArticleContainer>
+    return (
+        <ComponentContainer>
+            <HeaderContainer>View Articles</HeaderContainer>
+            <ContentContainer flexDirection="row">
+                <ArticleContainer>
+
+                    {
+                        articles.map(article => {
+                            return <ArticleDivider key={article.id}>
+                                <Article
+                                    key={article.id}
+                                    article={article}
+                                    handleDelete={handleDelete}
+                                    handleEditSelect={handleEditSelect}
+                                />
+                            </ArticleDivider>
+                        })
+                    }
+
+                </ArticleContainer>
+
                 {
-                    articles.map(article => {
-                        return <ArticleDivider key={article.id}>
-                            <Article key={article.id} article={article} handleDelete={handleDelete} handleEditSelect={handleEditSelect}/>
-                        </ArticleDivider>
-                    })
+                    editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel} />
                 }
-            </ArticleContainer>
-            
-            {
-                editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel}/>
-            }
-        </ContentContainer>
-    </ComponentContainer>);
+
+            </ContentContainer>
+        </ComponentContainer>
+    );
 }
 
 export default View;
@@ -51,6 +91,9 @@ export default View;
 //2. When the component mounts, make an http request that adds all articles to state.
 //3. Complete handleDelete method. It should make a request that delete the article with the included id.
 //4. Complete handleEdit method. It should make a request that updates the article that matches the included article param.
+
+
+
 
 
 const Container = styled.div`
