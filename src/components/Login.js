@@ -60,27 +60,28 @@ const Login = (props) => {
                 <h1>Welcome to Blogger Pro</h1>
                 <h2>Please enter your account information.</h2>
 
+                <FormGroup onSubmit={handleLogin}>
 
-                <form onSubmit={handleLogin}>
-
-                    <input
+                    <Label> Username </Label>
+                    <Input
                         id="username"
                         type="text"
                         name="username"
                         value={login.username}
                         onChange={handleChange}
                     />
-
-                    <input
+                    <Label> Password </Label>
+                    <Input
                         id="password"
                         type="text"
                         name="password"
                         value={login.password}
                         onChange={handleChange}
                     />
+
                     <button id="submit">SUBMIT</button>
 
-                </form>
+                </FormGroup>
 
                 <p id="error">{error}</p>
 

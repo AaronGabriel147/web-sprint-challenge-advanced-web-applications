@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import articleService from '../services/articleServices';
 import Article from './Article';
 import EditForm from './EditForm';
+
 import { axiosWithAuth } from './axiosWithAuth';
+import articleService from '../services/articleServices';
 
 
 
-// * [ ] Complete `handleDelete` so that a http request is made that deletes the article with the included id. 
-// * [ ] After successfully deleting the article on the api, update local state to reflect these changes.
+// * [x] Complete `handleDelete` so that a http request is made that deletes the article with the included id. 
+// * [x] After successfully deleting the article on the api, update local state to reflect these changes.
 
 
 const View = (props) => {
@@ -16,13 +17,15 @@ const View = (props) => {
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 
+    // console.log(articles)
 
 
     useEffect(() => {
-        articleService().then((res) => {
-            // console.log('useEffect res inside View.js', res)
-            setArticles(res)
-        })
+        articleService()
+            .then(res => {
+                console.log('useEffect res inside View.js', res)
+                setArticles(res)
+            })
     }, []);
 
 
@@ -32,10 +35,11 @@ const View = (props) => {
 
     const handleDelete = (id) => {
         axiosWithAuth()
-            .delete(`articles/${id.id}`)
+            .delete(`/articles/${id}`)
             .then((res) => {
-                // console.log('@@@@@@@res in handleDelete', res)
-                // setArticles(articles.filter(article => article.id !== id.id))
+                console.log('@@@@@@@res in handleDelete', res)
+                // setArticles(articles.filter(article => article.id !== id.id))   //  this was a mistake
+                setArticles(res.data)
             })
             .catch((err) => {
                 console.log(err)
@@ -43,6 +47,13 @@ const View = (props) => {
     }
 
     const handleEdit = (article) => {
+        axiosWithAuth()
+            .pt(`articles/${article.id}`, article)
+            .then(res => {
+                // console.log(res)
+                setArticles(res.data)
+            })
+            setEditing(false)
     }
 
     const handleEditSelect = (id) => {
@@ -69,7 +80,9 @@ const View = (props) => {
                                     handleDelete={handleDelete}
                                     handleEditSelect={handleEditSelect}
                                 />
+
                             </ArticleDivider>
+
                         })
                     }
 

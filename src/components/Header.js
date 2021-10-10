@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
-const Header = () => {
+const Header = (props) => {
+    
+    console.log(props)
+
     return(
         <HeaderStyle>
             <p>Blogger Pro</p>
