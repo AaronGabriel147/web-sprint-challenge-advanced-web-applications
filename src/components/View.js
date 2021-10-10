@@ -48,7 +48,7 @@ const View = (props) => {
 
     const handleEdit = (article) => {
         axiosWithAuth()
-            .pt(`articles/${article.id}`, article)
+            .put(`articles/${article.id}`, article)
             .then(res => {
                 // console.log(res)
                 setArticles(res.data)

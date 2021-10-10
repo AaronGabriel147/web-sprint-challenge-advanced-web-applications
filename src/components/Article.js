@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
+
+
+
+
+
 const Article = (props)=> {
+    
     const {article, handleDelete, handleEditSelect} = props;
 
     return(<div data-testid="article">
@@ -27,6 +33,23 @@ const Article = (props)=> {
 }
 
 export default Article;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const ArticleStyle = styled.div`

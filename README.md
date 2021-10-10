@@ -152,11 +152,20 @@ ________________API CALLS______________________
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers to the questions within `interview_answers.md` file. These will not be counted as a part of your sprint score but will be helpful for preparing you for your endorsement interview, and enhancing overall understanding.
 
 
+Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers to the questions within `interview_answers.md` file. These will not be counted as a part of your sprint score but will be helpful for preparing you for your endorsement interview, and enhancing overall understanding.
 
-1. Explain what a token is used for.
+1. Explain what a token is used for. 
 
-2. What steps can you take in your web apps to keep your data secure?
+A token is used to authenticate a client side user who is trying to gain access to a protected destination. The input from the user is sent to the server, and if the correct username and password are received, then a special token is granted, which allows the user access.
 
-3. Describe how web servers work.
+2. What steps can you take in your web apps to keep your data secure? 
+
+We should use authentication. There are additional steps we can add as well, like adding 'time out' logic to our code. Websites like banks use time outs to prevent a user from accidentally staying logged in, in which case they would be vulnerable to unwanted users having acces to their accounts.
+
+3. Describe how web servers work. 
+
+Web servers store data and can contain logic that do things like grant or deny data depending upon the data it receives via the client side user.
 
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+Get, post, put, delete. Get, fetches data, post sends data, put changes data, delete removes data.  

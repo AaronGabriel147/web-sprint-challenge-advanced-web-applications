@@ -6,11 +6,19 @@ import MutationObserver from 'mutationobserver-shim';
 
 import Article from './Article';
 
-test('renders component without errors', ()=> {
+test('renders component without errors', () => {
+    render (<Article article={testArticle} />)
+    const article = screen.queryAllByTestId("article")
+    expect(article).toBeInTheDocument();
 });
 
-// test('renders headline, author from the article when passed in through props', ()=> {
-// });
+test('renders headline, author from the article when passed in through props', ()=> {
+    // render (<Article headline={article.headline} />)
+    // const headline = screen.queryAllByTestId("headline")
+    // expect(headline).toBeInTheDocument();
+});
+
+
 
 // test('renders "Associated Press" when no author is given', ()=> {
 // });
