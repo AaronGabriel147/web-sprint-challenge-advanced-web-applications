@@ -26,25 +26,25 @@ import Article from './Article';
 
 // Do not know what this means.
 test('renders component without errors', () => {
-    render(<Article article={article} />)
-    const article = screen.queryAllByTestId("article")
-    expect(article).toBeInTheDocument();
+    // render(<Article article={article} />)
+    // const article = screen.queryAllByTestId("article")
+    // expect(article).toBeInTheDocument();
 });
 
 // Not sure what they are asking for. There is a typo or I am very confused "headline, author"???
-// test('renders headline, author from the article when passed in through props', () => {
+test('renders headline, author from the article when passed in through props', () => {
 //     render (<Article article={testArticle} />)
 //     const headline = screen.queryAllByTestId("headline")
 //     expect(headline).toBeInTheDocument();
-// });
+});
 
 
 
-// test('renders "Associated Press" when no author is given', () => {
-// });
+test('renders "Associated Press" when no author is given', () => {
+});
 
-// test('executes handleDelete when the delete button is pressed', () => {
-// });
+test('executes handleDelete when the delete button is pressed', () => {
+});
 
 // Task List:
 // 1. Complete all above tests.Create test article data when needed.
